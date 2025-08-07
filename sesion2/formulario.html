@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formularios</title>
+</head>
+
+<body>
+    <!--Metodos GET, POST, PUT, PATCH-->
+    <form method="POST">
+        <label for="nombre">Nombre</label>
+        <input id="nombre" type="text" name="nombre" />
+
+        <label for="fecha_nacimiento">Fecha nacimiento</label>
+        <input id="fecha_nacimiento" type="date" name="fecha_nacimiento">
+
+        <label for="salario">Salario</label>
+        <input type="number" id="salario" name="salario">
+        <select id="carrera" name="carrera">
+            <option value="0907">Ingenieria en sistemas</option>
+            <option value="0810">Administracion</option>
+            <option value="9109">Derecho</option>
+        </select>
+        <input type="submit" value="Guardar" />
+    </form>
+</body>
+
+</html>

@@ -1,0 +1,65 @@
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    background-color: blue;
+    color: white;
+}
+
+.rounded-border {
+    border-radius: 10px;
+}
+
+.m-5 {
+    margin: 5px 10px 5px 10px;
+}
+
+.nav-menu {
+    padding: 5px;
+}
+
+.nav-menu>li {
+    list-style: none;
+    margin: 5px;
+    background-color: blue;
+    border-radius: 5px;
+}
+
+.nav-menu>li>a {
+    color: white;
+}
+
+
+.main {
+    display: flex;
+}
+
+.left {
+    flex: 20%;
+}
+
+.body {
+    flex: 55%;
+    padding: 5px;
+
+}
+
+.right {
+    flex: 15%;
+    background-color: coral;
+    padding: 5px;
+}
+
+.footer {
+    background-color: yellow;
+    padding: 5px;
+}
+
+@media only screen and (max-width: 600px) {
+
+    .main {
+        flex-direction: column;
+    }
+}

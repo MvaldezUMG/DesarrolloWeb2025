@@ -1,0 +1,19 @@
+.main {
+    display: flex;
+    flex-direction: row;
+}
+
+.col {
+    padding: 5px;
+    margin: 5px;
+}
+
+.card {
+    border: 1px solid;
+    border-radius: 5px;
+    margin: 5px;
+}
+
+.product-image {
+    width: 250px;
+}
