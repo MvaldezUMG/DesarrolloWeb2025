@@ -1,0 +1,54 @@
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
+.pnpm-debug.log*
+
+# Build output
+dist/
+build/
+tmp/
+temp/
+out/
+coverage/
+.nyc_output/
+
+# Logs
+logs/
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment variables
+.env
+.env.*.local
+
+# Editor directories and files
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# React Native
+.expo/
+.expo-shared/
+
+# Vue.js
+*.local
+*.cache
+*.bak
+*.tmp
+
+# Misc
+*.tgz
+*.gz
+*.zip
+
+# Test coverage
+coverage/
+.nyc_output/

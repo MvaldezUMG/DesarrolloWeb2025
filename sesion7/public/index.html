@@ -1,0 +1,151 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Chat Grupal</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                background-color: #f0f0f0;
+            }
+            .chat-container {
+                width: 400px;
+                height: 600px;
+                background-color: white;
+                border-radius: 10px;
+                box-shadow: 0 0 10px rgba(0,0,0,0.1);
+                display: flex;
+                flex-direction: column;
+            }
+            .chat-list {
+                flex: 1;
+                padding: 10px;
+                overflow-y: auto;
+                border-bottom: 1px solid #ddd;
+            }
+            .message {
+                margin-bottom: 10px;
+                padding: 8px;
+                border-radius: 5px;
+                background-color: #e1f5fe;
+            }
+            .message.own {
+                background-color: #c8e6c9;
+                text-align: right;
+            }
+            .input-container {
+                display: flex;
+                padding: 10px;
+            }
+            .input-container input {
+                flex: 1;
+                padding: 10px;
+                border: 1px solid #ddd;
+                border-radius: 5px;
+                margin-right: 10px;
+            }
+            .input-container button {
+                padding: 10px 20px;
+                background-color: #007bff;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+            .input-container button:hover {
+                background-color: #0056b3;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="chat-container">
+            <div class="input-container">
+                <label>Usuario</label>
+               <input type="text" id="username-input" placeholder="Nombre de usuario">
+            </div>
+            <div class="chat-list" id="chat-list">
+                <div class="message">Usuario1: ¡Hola a todos!</div>
+                <div class="message">Usuario2: ¿Cómo están?</div>
+                <div class="message own">Tú: Bien, gracias.</div>
+            </div>
+            <div class="input-container">
+                <input type="text" id="message-input" placeholder="Escribe un mensaje...">
+                <button onclick="sendMessage()">Enviar</button>
+            </div>
+        </div>
+        <script>
+
+            const messagesEventSource = new EventSource("/sse/mensajes")
+
+            messagesEventSource.onmessage = (event)=>{
+                console.log("datos", event.data)
+                try {
+                    let datos = JSON.parse(event.data)
+                    const username = document.getElementById('username-input').value
+                    if (datos.username !== username){
+                        drawMessage(datos.message, "message")
+                    }
+                    
+                }
+                catch(err){
+                    console.error(err)
+                }
+            }
+
+            function drawMessage(message, classList){
+                const chatList = document.getElementById('chat-list');
+                const newMessage = document.createElement('div');
+                newMessage.className = 'message own';
+                newMessage.textContent = message;
+                chatList.appendChild(newMessage);
+               
+                document.getElementById('chat-list').scrollTop = document.getElementById('chat-list').scrollHeight;
+            }
+
+            async function sendToServer(message){
+                try{
+                    const body =  {
+                        username: document.getElementById('username-input').value,
+                        message: message
+                    }
+
+                    let response = await fetch("/api/mensaje", {
+                        method: "POST",
+                        body: JSON.stringify(body),
+                        headers: {
+                            "Content-Type": "application/json"
+                        }
+                    })
+                    let responseJson = await response.json()
+                    console.log(responseJson)
+
+                }
+                catch(err){
+                    console.error(err)
+                }
+            } 
+
+            function sendMessage() {
+                const input = document.getElementById('message-input');
+                const message = input.value.trim();
+                if (message) {
+                    drawMessage(message, "message own");
+                    sendToServer(message)
+                    input.value = '';
+                }
+            }
+            document.getElementById('message-input').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    sendMessage();
+                }
+            });
+        </script>
+    </body>
+    </html>

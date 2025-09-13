@@ -9,6 +9,22 @@
 
 <body>
 
+    <div id="miDiv"></div>
+    <button id="myBtn">Boton</button>
+    <form id="miForm">
+        <label for="nombre">Nombre</label>
+        <input data-validation="required" type="text" id="nombre" name="nombre" />
+        <label for="dpi">DPI</label>
+        <input data-validation="required" type="text" id="dpi" name="dpi" />
+        <button type="submit">Enviar</button>
+
+    </form>
+
+    <dialog id="dialogSolicitud">
+        <label for="dialogInput">Datos</label>
+        <input id="datos"></input>
+        <button onclick="document.getElementById('dialogSolicitud').close()">Cerrar</button>
+    </dialog>
     <script src="script.js" />
     <script>
 

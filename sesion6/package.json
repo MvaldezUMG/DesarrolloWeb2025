@@ -1,0 +1,14 @@
+{
+  "name": "clase6",
+  "version": "1.0.0",
+  "description": "demo clase 6",
+  "main": "2-server-express.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "mvaldez",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
