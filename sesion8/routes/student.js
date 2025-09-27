@@ -38,7 +38,8 @@ export default function createStudentRouter (studentModel){
             student.destroy()
         }
         res.status(204)
-        res.send()
+        res.send()p
+        
     })
     return router
 }
