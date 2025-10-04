@@ -4,6 +4,7 @@ import Home from './pages/Home'
 import About from './pages/About';
 import Contact from './pages/Contact';
 import Practices from './pages/Practices'
+import Students from './pages/Students';
 import "./App.css";
 
 function MiBoton(){
@@ -31,6 +32,9 @@ function App() {
             <li>
               <Link to="/practices">Practices</Link>
             </li>
+             <li>
+              <Link to="/students">Students</Link>
+            </li>
           </ul>
         </nav>
         <Routes>
@@ -38,7 +42,9 @@ function App() {
            <Route path="/about" element={<About />} />
            <Route path="/contact" element={<Contact />} />
            <Route path="/practices" element={<Practices />} />
+           <Route path="/students" element={<Students />} />
            
+
         </Routes>
       </BrowserRouter>
     </>

@@ -1,3 +1,11 @@
 html {
     background-color: aqua;
 }
+
+.dialog{
+    border: none;
+}
+
+.dialog::backdrop{
+   background-color: black;
+}
